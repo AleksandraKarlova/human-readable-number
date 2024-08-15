@@ -36,6 +36,7 @@ module.exports = function toReadable (number) {
   let finalNumber = '';
 
   let divideByTen = number % 10;
+  let divideByHundred = number % 100;
 
   if (number <= 20) {
     finalNumber = numbers[number];
@@ -48,9 +49,9 @@ module.exports = function toReadable (number) {
       finalNumber = numbers[number];
     }
   } else {
-    if (number % 100 <= 20 && number % 100 !== 0) {
-      tens = numbers[number % 100];
-      hundreds = numbers[(number - number % 100) / 100] + ' ' + 'hundred';
+    if (divideByHundred <= 20 && divideByHundred !== 0) {
+      tens = numbers[divideByHundred];
+      hundreds = numbers[(number - divideByHundred) / 100] + ' ' + 'hundred';
       finalNumber = hundreds + ' ' + tens;
     } else if (number % 100 === 0) {
       finalNumber = numbers[number / 100] + ' ' + 'hundred';
